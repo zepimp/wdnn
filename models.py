@@ -8,10 +8,10 @@ from sklearn.model_selection import GridSearchCV
 from keras import regularizers
 from keras.layers import concatenate
 from keras.optimizers import Adam
-
+import numpy as np
 
 '''
-Wide and deep multi-task neural network. 
+Wide and deep multi-task neural network.
 '''
 def get_wide_deep():
     input = Input(shape=(222,))
@@ -26,7 +26,7 @@ def get_wide_deep():
     x = Dropout(0.5)(x)
     wide_deep = concatenate([input, x])
     preds = Dense(11, activation='sigmoid', kernel_regularizer=regularizers.l2(1e-8))(wide_deep)
-    model = Model(input=input, output=preds)
+    model = Model(inputs=input, outputs=preds)
     opt = Adam(lr=np.exp(-1.0 * 9))
     model.compile(optimizer=opt,
                   loss=masked_multi_weighted_bce,
@@ -75,7 +75,7 @@ def get_deep():
 
 
 '''
-Wide and deep single task neural network. 
+Wide and deep single task neural network.
 '''
 def get_wide_deep_single():
     input = Input(shape=(222,))

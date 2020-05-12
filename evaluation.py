@@ -1,5 +1,5 @@
-#from helpers import *
-#from models import *
+from helpers import *
+from models import *
 import numpy as np
 from sklearn.metrics import roc_auc_score, average_precision_score
 from sklearn.model_selection import KFold, StratifiedKFold
@@ -14,7 +14,7 @@ num_drugs = 11
 drugs = ['rif', 'inh', 'pza', 'emb', 'str', 'cip', 'cap', 'amk', 'moxi', 'oflx', 'kan']
 
 
-data_dir = '/mnt/raid1/TB_data/tb_data_050818/'
+data_dir = '/home/hap-82/Downloads/wdnn/data/'
 # Data
 X = np.loadtxt(data_dir + 'X_features.csv', delimiter=',')
 
@@ -133,6 +133,5 @@ for r in range(repeats):
             #K.clear_session()
 
 
-results.to_csv('/mnt/raid1/TB_data/results.csv',index=False)
-results.to_csv('results_020719/results_pr.csv',index=False)
-
+results.to_csv('/home/hap-82/Downloads/wdnn/results/results.csv',index=False)
+results.to_csv('/home/hap-82/Downloads/wdnn/results/results_pr.csv',index=False)
